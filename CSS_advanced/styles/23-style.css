@@ -351,7 +351,7 @@ a:active {
 }
 
 .social-link > svg {
-	background: var(--text-color);
+	fill: var(--text-color);
 }
 
 .navbar-menu {
