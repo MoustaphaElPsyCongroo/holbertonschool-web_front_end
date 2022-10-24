@@ -282,13 +282,13 @@ a:active {
 }
 
 .card-services .card-title {
-	margin: none;
+	margin: 0;
 }
 
 .card-services a {
 	display: block;
 	padding: 2rem;
-	background: var(--color-light-grey);
+	background-color: var(--color-light-grey);
 }
 
 .card-services a:hover {
