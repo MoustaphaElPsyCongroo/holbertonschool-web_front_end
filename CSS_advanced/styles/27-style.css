@@ -466,7 +466,7 @@ ul.row {
 }
 
 .section-hero {
-	background-size: auto 90rem;
+	background-size: 90rem auto;
 }
 
 .section-hero .section-title {
