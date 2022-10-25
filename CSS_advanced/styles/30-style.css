@@ -519,7 +519,7 @@ ul.row {
 	overflow: hidden;
 }
 
-.card-work .card-image {
+.card-work .card-image img {
 	height: 30rem;
 	object-fit: cover;
 	bottom: 0;
@@ -527,7 +527,7 @@ ul.row {
 
 .card-work .card-inner {
 	position: absolute;
-	top: -0..1rem;
+	top: -0.1rem;
 	left: -0.1rem;
 	right: -0.1rem;
 	z-index: 1;
@@ -553,7 +553,7 @@ ul.row {
 
 
 .card-work .card-title a::after {
-	positon: absolute;
+	position: absolute;
 	top: 0;
 	right: 0;
 	left: 0;
