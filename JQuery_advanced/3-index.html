@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 2</title>
+  </head>
+
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+      crossorigin="anonymous"
+    ></script>
+    <script type="application/javascript">
+      function createFamilyTree() {
+        const table = $(`<table>
+      		<thead>
+      			<tr>
+      				<th>Firstname</th>
+      				<th>Lastname</th>
+      			</tr>
+      		</thead>
+      		<tbody>
+      			<tr>
+      				<td>Guillaume</td>
+      				<td>Salva</td>
+      			</tr>
+      			<tr>
+      				<td>Paulette</td>
+      				<td>Salva</td>
+      			</tr>
+      			<tr>
+      				<td>Antoine</td>
+      				<td>Salva</td>
+      			</tr>
+      		</tbody>
+      	</table>`);
+
+        $("body").append("<table>");
+        $("table").append("<thead>");
+        $("thead").append("<tr>");
+        $("tr").append("<th>", "<th>");
+        $("tr th:nth-child(1)").text("Firstname");
+        $("tr th:nth-child(2)").text("Lastname");
+        $("table").append("<tbody>");
+        $("tbody").append("<tr>", "<tr>", "<tr>");
+        $("tbody tr").append("<td>", "<td>");
+        $("tbody tr:nth-child(1) td:nth-child(1)").text("Guillaume");
+        $("tbody tr:nth-child(2) td:nth-child(1)").text("Paulette");
+        $("tbody tr:nth-child(3) td:nth-child(1)").text("Antoine");
+        $("tbody tr td:nth-child(2)").text("Salva");
+      }
+
+      createFamilyTree();
+    </script>
+  </body>
+</html>
