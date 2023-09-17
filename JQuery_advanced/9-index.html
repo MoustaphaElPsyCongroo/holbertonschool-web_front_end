@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 9</title>
+    <style>
+      .loading {
+        opacity: 0.2;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script type="application/javascript">
+      const createSearchForm = () => {
+        $("body").append('<input type="text"/><input type="submit"/><ul/>');
+        $("body").append("<ul id=pagination></ul>");
+        $('input[type="submit"]').on("click", function (event) {
+          event.preventDefault();
+          value = $('input[type="text"]').val();
+          queryWikipedia(value);
+        });
+      };
+
+      const addNewArticle = (id, title, snippet) => {
+        $("ul:first").append(
+          `<li><p><span>${id} - <b>${title}</b></span></p><p>${snippet}</p></li>`
+        );
+      };
+
+      const queryWikipedia = (search, offset = 0) => {
+        displayLoading(true);
+        let url = "https://en.wikipedia.org/w/api.php";
+        let itemsPerPage = 10;
+        const data = {
+          action: "query",
+          list: "search",
+          srsearch: search,
+          sroffset: offset * itemsPerPage,
+          srlimit: itemsPerPage,
+          format: "json",
+          origin: "*",
+        };
+        $.get({
+          url: url,
+          data: data,
+          dataType: "jsonp",
+          success: function (res) {
+            $("ul:first").empty();
+            nbItems = res.query.searchinfo.totalhits;
+            buildPagination(nbItems, itemsPerPage, data.sroffset);
+            arr = res.query.search;
+            for (let i = 0; i < arr.length; i++)
+              addNewArticle(arr[i].pageid, arr[i].title, arr[i].snippet);
+            displayLoading(false);
+          },
+        });
+      };
+
+      const buildPagination = (numberOfItems, itemsPerPage, currentOffset) => {
+        $("#pagination").empty();
+        let nbPages = Math.floor(numberOfItems / itemsPerPage);
+        let nbPagination = 1;
+        while (nbPagination < nbPages) {
+          $("#pagination").append(`<li>${nbPagination}</li>`);
+          let bold = currentOffset == 0 ? 1 : currentOffset / 10;
+          nbPagination == bold
+            ? $("#pagination li:last").css({ fontWeight: "bold" })
+            : null;
+          nbPagination++;
+        }
+        $("#pagination li").css({
+          display: "inline-block",
+          cursor: "pointer",
+          marginLeft: "10px",
+        });
+        $("#pagination li").on("click", function (event) {
+          value = $(event.currentTarget).text();
+          queryWikipedia($('input[type="text"]').val(), value);
+        });
+      };
+
+      const displayLoading = (loading) => {
+        loading
+          ? $("ul:first").wrap("<div class='loading'/>")
+          : $("ul:first").unwrap();
+      };
+
+      $(document).ready(function () {
+        createSearchForm();
+      });
+    </script>
+  </head>
+
+  <body></body>
+</html>
