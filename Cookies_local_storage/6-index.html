@@ -29,7 +29,7 @@
         for (const item of availableItems) {
           const li = document.createElement("li");
           li.textContent = item;
-          li.addEventListener("click", addItemToCart);
+          li.addEventListener("click", () => addItemToCart(item));
 
           itemsList.appendChild(li);
         }
@@ -43,7 +43,9 @@
         console.log(sessionStorage);
 
         const notification = document.createElement("p");
-        notification.textContent = `You previously had ${sessionStorage.length} items in your cart`;
+        notification.textContent = `You previously had ${
+          sessionStorage.length
+        } item${sessionStorage.length > 1 ? "s" : ""} in your cart`;
         document.body.appendChild(notification);
       }
     </script>
